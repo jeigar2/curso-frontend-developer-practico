@@ -33,3 +33,50 @@ function toggleProductDetail() {
         toggleMobileMenu();
     productDetail.classList.toggle("inactive");
 }
+
+const productList = [];
+productList.push({
+    name: 'Bike',
+    price: 119.99,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+})
+productList.push({
+    name: 'Screen',
+    price: 220.53,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+})
+productList.push({
+    name: 'Laptop',
+    price: 679.99,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+})
+
+function renderProduct(arr) {
+    for (const product of arr) {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+        const productImg = document.createElement("img")
+        productImg.setAttribute("src", product.image);
+        productCard.appendChild(productImg);
+        const productInfo = document.createElement("div");
+        productInfo.classList.add("product-info");
+        const div = document.createElement("div");
+        const pPrice = document.createElement("p");
+        pPrice.innerText = product.price;
+        const pName = document.createElement("p");
+        pName.innerText = product.name;
+        div.appendChild(pPrice);
+        div.appendChild(pName);
+        productInfo.appendChild(div);
+        productCard.appendChild(productInfo);
+        const productInfoFigure = document.createElement("figure");
+        const imgCart = document.createElement("img")
+        imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
+        productInfoFigure.appendChild(imgCart);
+        productInfo.appendChild(productInfoFigure);
+        const cardsContainer = document.querySelector(".cards-container");
+        cardsContainer.appendChild(productCard);   
+    }
+}
+
+renderProduct(productList);
