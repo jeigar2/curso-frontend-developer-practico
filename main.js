@@ -15,23 +15,23 @@ const mobileMenu = document.querySelector(".mobile-menu");
 elementMenuMovile.addEventListener("click", toggleMobileMenu);
 
 function toggleMobileMenu() {
-    const isProductDetailClose = productDetail.classList.contains("inactive");
-    if(!isProductDetailClose)
-        toggleProductDetail();
+    const isShoppingCartContainerClose = shoppingCartContainer.classList.contains("inactive");
+    if(!isShoppingCartContainerClose)
+        toggleshoppingCartContainer();
     mobileMenu.classList.toggle("inactive");
 }
 
 const elementMenuClassShoppingCart = ".navbar-shopping-cart";
 const elementMenuShoppingCart = document.querySelector(elementMenuClassShoppingCart);
-const productDetail = document.querySelector(".product-detail");
+const shoppingCartContainer = document.querySelector("#shoppingCartContainer");
 
-elementMenuShoppingCart.addEventListener("click", toggleProductDetail);
+elementMenuShoppingCart.addEventListener("click", toggleshoppingCartContainer);
 
-function toggleProductDetail() {
+function toggleshoppingCartContainer() {
     const isMobileMenuClosed = mobileMenu.classList.contains("inactive");
     if(!isMobileMenuClosed)
         toggleMobileMenu();
-    productDetail.classList.toggle("inactive");
+    shoppingCartContainer.classList.toggle("inactive");
 }
 
 const productList = [];
@@ -53,13 +53,16 @@ productList.push({
 
 function renderProduct(arr) {
     for (const product of arr) {
+
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
         const productImg = document.createElement("img")
         productImg.setAttribute("src", product.image);
         productCard.appendChild(productImg);
+
         const productInfo = document.createElement("div");
         productInfo.classList.add("product-info");
+
         const div = document.createElement("div");
         const pPrice = document.createElement("p");
         pPrice.innerText = product.price;
@@ -67,6 +70,7 @@ function renderProduct(arr) {
         pName.innerText = product.name;
         div.appendChild(pPrice);
         div.appendChild(pName);
+
         productInfo.appendChild(div);
         productCard.appendChild(productInfo);
         const productInfoFigure = document.createElement("figure");
@@ -74,6 +78,7 @@ function renderProduct(arr) {
         imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg");
         productInfoFigure.appendChild(imgCart);
         productInfo.appendChild(productInfoFigure);
+
         const cardsContainer = document.querySelector(".cards-container");
         cardsContainer.appendChild(productCard);   
     }
